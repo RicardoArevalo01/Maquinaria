@@ -1,20 +1,22 @@
 import { StyleProp, Text, TextStyle } from "react-native"
-import { font } from "../../theme/font"
-import { colors } from "../../theme/globals"
+import { fonts } from "../../theme/appFonts"
+import { useContext } from "react"
+import { ThemeContext } from "../../context"
 
 export interface HeaderTitleProps {   
     text?: string,
     align?: 'center' | 'left' | 'right'
     style?: StyleProp<TextStyle>
-    color?: string  
 }
 
 export const HeaderTitle = ( { 
     text, 
     align = 'left', 
     style ,
-    color = colors.dark
 }: HeaderTitleProps ) => {
+
+    const {theme} = useContext(ThemeContext);
+    
     return (
 
         <Text
@@ -22,9 +24,9 @@ export const HeaderTitle = ( {
                 {
                     fontSize: 25,
                     textAlign: align,
-                    fontFamily: font.semiBold,
-                    color: color,
-                    marginTop: 10
+                    fontFamily: fonts.bold,
+                    color: theme.colors.onSurfaceVariant,
+                    marginTop: 5,
                 },
                 style
             ]}

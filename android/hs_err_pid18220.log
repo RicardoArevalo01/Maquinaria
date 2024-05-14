@@ -1,0 +1,39 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffd4540b1b8, pid=18220, tid=5620
+#
+# JRE version: OpenJDK Runtime Environment Microsoft-8902769 (17.0.10+7) (build 17.0.10+7-LTS)
+# Java VM: OpenJDK 64-Bit Server VM Microsoft-8902769 (17.0.10+7-LTS, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# Problematic frame:
+# C  [ntdll.dll+0x5b1b8]
+#
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   https://github.com/microsoft/openjdk/issues
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -XX:MaxMetaspaceSize=512m --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED -Xmx2048m -Dfile.encoding=windows-1252 -Duser.country=EC -Duser.language=es -Duser.variant -javaagent:C:\Users\AppDev\.gradle\wrapper\dists\gradle-8.6-all\3mbtmo166bl6vumsh5k2lkq5h\gradle-8.6\lib\agents\gradle-instrumentation-agent-8.6.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 8.6
+
+Host: 12th Gen Intel(R) Core(TM) i7-1255U, 12 cores, 15G,  Windows 11 , 64 bit Build 22621 (10.0.22621.3374)
+Time: Tue May 14 09:27:51 2024 Hora est. Pacífico, Sudamérica elapsed time: 2403.518793 seconds (0d 0h 40m 3s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000251c0fc5530):  JavaThread "Unconstrained build operations Thread 117" [_thread_in_vm, id=5620, stack(0x000000ee16300000,0x000000ee16400000)]
+
+Stack: [0x000000ee16300000,0x000000ee16400000],  sp=0x000000ee163f8350,  free space=992k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [ntdll.dll+0x5b1b8]
+V  [jvm.dll+0x225d9a]
+V  [jvm.dll+0x227408]
+V  [jvm.dll+0x226fd4]
+V  [jvm.dll+0x2270bd]
+V  [jvm.dll+0x2161e8]
+V  [jvm.dll+0x21663f]
+V  [jvm.dll+0x386079]
+V  [jvm.dll+0x385e7d]
+C
