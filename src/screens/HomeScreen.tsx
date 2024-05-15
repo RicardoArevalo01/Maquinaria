@@ -1,31 +1,126 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {BaseScreen} from '../Template';
-import {DarwImage, DrawSignature} from '../utils';
 import {useImage} from '@shopify/react-native-skia';
+import { Card, HeaderTitle, ItemRow, Spacer, TextContent, Title } from '../components/shared';
+import Icon  from 'react-native-vector-icons/MaterialIcons';
+import { ThemeContext } from '../context';
+import { useNavigation } from '@react-navigation/native';
 
 export const HomeScreen = () => {
-  const [drawExample, setdrawExample] = useState<string[]>([]);
-  const [drawSignatureExample, setdrawSignatureExample] = useState<string[]>(
-    [],
-  );
-  const imgLeft = useImage(require('../assets/izq.jpg'));
+  const navigation = useNavigation();
+  const {theme} = useContext(ThemeContext);
+
   return (
     <BaseScreen>
-      <DarwImage
-        initialDraw={drawExample}
-        draw={drawValue => {
-          setdrawExample(drawValue);
-          console.log(JSON.stringify(drawValue, null, 3));
+      <HeaderTitle 
+        text="Espacio de trabajo"
+        style={{
+          marginTop: 10,
+          textAlign: 'center',
+          fontSize: 30
         }}
-        image={imgLeft}
-        text={'Izq'}
       />
-      <DrawSignature
-        draw={drawSignature =>
-          console.log(JSON.stringify(drawSignature, null, 3))
-        }
-        text={'Firmar'}
+
+      <Title 
+        weight='medium'
+        align='center'
+        text='Seleccione su espacio de trabajo'
       />
+
+      <Spacer size={10}/>
+
+      <Card
+        onPress={() => navigation.navigate('App' as never)}
+      >
+        <ItemRow
+          justifyContent='space-between'
+        >
+          <Title 
+            weight='semiBold'
+            text='Espacio de trabajo 1'
+          />
+          <Icon 
+            name='arrow-forward-ios'
+            size={20}
+            color={theme.colors.primary}
+          />
+        </ItemRow>
+        
+        <Spacer />
+        <TextContent
+          content='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+        />
+      </Card>
+      <Spacer />
+
+      <Card
+        onPress={() => navigation.navigate('App' as never)}
+      >
+        <ItemRow
+          justifyContent='space-between'
+        >
+          <Title 
+            weight='semiBold'
+            text='Espacio de trabajo 2'
+          />
+          <Icon 
+            name='arrow-forward-ios'
+            size={20}
+            color={theme.colors.primary}
+          />
+        </ItemRow>
+        <Spacer />
+        <TextContent
+          content='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+        />
+      </Card>
+      <Spacer/>
+
+      <Card
+        onPress={() => navigation.navigate('App' as never)}
+      >
+        <ItemRow
+          justifyContent='space-between'
+        >
+          <Title 
+            weight='semiBold'
+            text='Espacio de trabajo 3'
+          />
+          <Icon 
+            name='arrow-forward-ios'
+            size={20}
+            color={theme.colors.primary}
+          />
+        </ItemRow>
+        <Spacer />
+        <TextContent
+          content='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+        />
+      </Card>
+      <Spacer/>
+
+      <Card
+        onPress={() => navigation.navigate('App' as never)}
+      >
+        <ItemRow
+          justifyContent='space-between'
+        >
+          <Title 
+            weight='semiBold'
+            text='Espacio de trabajo 4'
+          />
+          <Icon 
+            name='arrow-forward-ios'
+            size={20}
+            color={theme.colors.primary}
+          />
+        </ItemRow>
+        <Spacer />
+        <TextContent
+          content='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+        />
+      </Card>
+
     </BaseScreen>
   );
 };

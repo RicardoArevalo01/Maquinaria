@@ -1,12 +1,15 @@
 import { Text } from "react-native"
 import { BaseScreen } from "../../Template"
-import { HeaderTitle } from "../../components/shared"
+import { FloatButton, HeaderTitle } from "../../components/shared"
 import { CustomFAB } from "../../components"
 import { useNavigation } from "@react-navigation/native"
+import { SeleccionarClienteVisitaModal } from "./SeleccionarClienteVisitaModal"
+import { useState } from "react"
 
 
 export const VisitasRealizadasScreen = (  ) => {
-
+    
+    const [showModal, setShowModal] = useState(false);
     const navigation = useNavigation();
 
     return (
@@ -16,10 +19,15 @@ export const VisitasRealizadasScreen = (  ) => {
                 text="Visitas Realizadas"
             />
 
-            <CustomFAB 
-                label="Nueva Visita"
-                icon="plus"
-                onPress={() => navigation.navigate('SeleccionarClienteVisita' as never)}
+            <FloatButton 
+                text="Nueva Visita"
+                icon="add"
+                onPress={() => setShowModal(true)}
+            />
+
+            <SeleccionarClienteVisitaModal 
+                setOpenModal={showModal}
+                CloseFunction={() => setShowModal(false)}
             />
         </BaseScreen>
 

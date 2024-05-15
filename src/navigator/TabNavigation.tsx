@@ -18,19 +18,19 @@ interface TabItem {
 
 const tabItems: TabItem[] = [
   {
-    name: 'Planificacion',
+    name: 'Planificación',
     title: 'Planificación',
     icon: icons.calendar,
     component: PlanificacionVisitasScreen,
   },
   {
-    name: 'Visitas',
-    title: 'Visitas',
+    name: 'Visitas Realizadas',
+    title: 'Historial',
     icon: icons.listBox,
     component: VisitasRealizadasScreen ,
   },
   {
-    name: 'ProfileScreen',
+    name: 'Perfil',
     title: 'Perfil',
     icon: icons.account,
     component: ProfileScreen,
@@ -44,16 +44,27 @@ export const TabNavigation = memo(() => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
+        tabBarStyle: {
+          backgroundColor: theme.colors.elevation.level2,
+          borderTopWidth: 0,
+          height: 80,
+          paddingBottom: 20,
+          paddingTop: 15,
+        },
+        tabBarLabelStyle: {
+          fontWeight: '500',
+        },
+        tabBarItemStyle:{
+          justifyContent: 'center',
+        },
       tabBarActiveTintColor: theme.colors.primary,
+      tabBarInactiveTintColor: theme.colors.onSurfaceVariant,
       }}>
       {tabItems.map(({name, title, icon, component}, index) => (
         <Tab.Screen
           key={index}
           name={name}
           options={{
-            tabBarStyle: {
-              backgroundColor: theme.colors.elevation.level2,
-            },
             tabBarIcon: ({focused, color, size}) => (
               <Icon
                 source={icon}

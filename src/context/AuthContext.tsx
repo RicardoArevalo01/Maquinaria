@@ -45,13 +45,13 @@ export const AuthContext = createContext({} as AuthContextProps);
 export const AuthProvider = ({children}: any) => {
   const {SaveJWTInfo, GetJWTInfo, CheckJWTInfo, RemoveAllData} = useStorage();
   const {postRequest} = useRequest();
-  const [status, setstatus] = useState<StatusTypes>('authenticated');
+  const [status, setstatus] = useState<StatusTypes>('checking');
   const [JWTInfo, setJWTInfo] = useState<TokenResponse>({} as TokenResponse);
   //const [userInfo, dispatch] = useReducer(authReducer, initialUserInfo);
 
-  // useEffect(() => {
-  //   checkToken();
-  // }, []);
+  useEffect(() => {
+    checkToken();
+  }, []);
 
   /**
    * Checks if there is a token in local storage and attempts to authenticate with it

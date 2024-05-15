@@ -1,15 +1,19 @@
-import { Button, Text } from "react-native"
+import { Text } from "react-native"
 import { BaseModal, BaseScreen } from "../../Template"
-import { HeaderTitle } from "../../components/shared"
+import { Button, Card, FloatButton, HeaderTitle, Title } from "../../components/shared"
 import { CustomFAB } from "../../components"
 import { useNavigation } from "@react-navigation/native"
-import { useState } from "react"
+import { useContext, useState } from "react"
+
 import { SeleccionarClienteVisitaModal } from "./SeleccionarClienteVisitaModal"
+import { ThemeContext } from "../../context"
 
 
 export const PlanificacionVisitasScreen = (  ) => {
 
     const [showModal, setShowModal] = useState(false);
+    const {theme , toggleTheme, changeThemeColor} = useContext(ThemeContext);
+    
 
     return (
 
@@ -18,9 +22,27 @@ export const PlanificacionVisitasScreen = (  ) => {
                 text="Planificación de Visitas"
             />
 
-            <CustomFAB 
-                label="Nueva Visita"
-                icon="plus"
+            
+ 
+            <Card>
+                <Title 
+                    weight='medium'
+
+                    size="small"
+                    text='Visitas programadas'
+                />  
+            </Card> 
+
+            <Button 
+                text="Seleccionar Cliente"
+                icon="add"
+                onPress={() => toggleTheme()}
+            />
+            
+
+            <FloatButton 
+                text="Nueva Visita"
+                icon="add"
                 onPress={() => setShowModal(true)}
             />
 

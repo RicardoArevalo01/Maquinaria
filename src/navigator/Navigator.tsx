@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {AuthContext, PermissionsContext} from '../context';
 import {
+  HomeScreen,
   LoadingScreen,
   LoginScreen,
   RecoveryPasswordScreen,
@@ -64,10 +65,17 @@ export const Navigator = () => {
           ) : (
             <Stack.Navigator>
               <Stack.Screen
-                name="TabNavigation"
-                component={ TabNavigation }
+                name="Workspace"
+                component={ HomeScreen }
                 options={{
                   headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="App"
+                component={ TabNavigation }
+                options={{
+                  headerShown: true,
                 }}
               />
               <Stack.Screen

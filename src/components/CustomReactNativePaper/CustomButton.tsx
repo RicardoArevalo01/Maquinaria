@@ -18,7 +18,7 @@ interface Props {
   disabled?: boolean;
   textColor?: string;
   showLoadingModal?: boolean;
-  flexGrow?: number;
+  flex?: number;
   color?: string;
 }
 
@@ -36,7 +36,7 @@ export const CustomButton = memo(
     textColor = undefined,
     showLoadingModal = false,
     color,
-    flexGrow = 1,
+    flex = 1,
   }: Props) => {
     const [isLoading, setisLoading] = useState(false);
     const {theme} = useContext(ThemeContext);
@@ -65,6 +65,8 @@ export const CustomButton = memo(
         style={[
           {
             margin: 5,
+            borderRadius: 10,
+            justifyContent: 'center',
           },
           type === 'contained-tonal' && {backgroundColor: color ? lightenColor(color, 0.8) : lightenColor(theme.colors.primary, 0.8)},
           type === 'text' && {backgroundColor: 'transparent'},
@@ -78,7 +80,8 @@ export const CustomButton = memo(
         disabled={isLoading ? true : disabled}
         labelStyle={[ 
           {
-            fontFamily: fonts.semiBold
+            fontFamily: fonts.semiBold,
+            fontSize: 13,
           },
           type === 'contained-tonal' && {color: color ? color : theme.colors.primary},
           type === 'text' && {color: color ? color : theme.colors.primary},
@@ -95,3 +98,4 @@ export const CustomButton = memo(
     );
   },
 );
+      

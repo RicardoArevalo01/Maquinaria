@@ -1,12 +1,13 @@
 import React from 'react';
 import {AuthProvider} from './src/context/AuthContext';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, useTheme} from '@react-navigation/native';
 import {Navigator} from './src/navigator/Navigator';
 import {Footer} from './src/theme/Footer';
 import {SafeAreaView} from 'react-native';
 import {
   CheckInternetProvider,
   PermissionsProvider,
+  ThemeContext,
   ThemeProvider,
 } from './src/context';
 import {AlertManager, LoaderManager, SnackToastBarManager} from './src/utils';
@@ -28,7 +29,9 @@ const AppState = ({children}: {children: JSX.Element | JSX.Element[]}) => (
 
 //#endregion
 
-const App = () => (
+const App = () => {
+
+return (
   <SafeAreaView style={{flex: 1}}>
     <AppState>
       <NavigationContainer>
@@ -37,9 +40,8 @@ const App = () => (
       <AlertManager />
       <LoaderManager />
       <SnackToastBarManager />
-      <Footer />
     </AppState>
   </SafeAreaView>
-);
-
+  );
+}
 export default App;

@@ -2,6 +2,7 @@ import { Pressable, StyleProp, Text, TextStyle } from "react-native"
 import { useContext, useEffect, useState } from "react"
 import { fonts } from "../../theme/appFonts"
 import { ThemeContext } from "../../context"
+import { lightenColor } from "../../helpers"
 
 export interface TitleProps {
     text?: string
@@ -34,24 +35,24 @@ export const Title = ({
 
     const [titelSize, setTitleSize] = useState(0)
     const [titleFontWeight, setTitleFontWeight] = useState('')
-    const {theme} = useContext(ThemeContext);
+    const {theme, themeInfo} = useContext(ThemeContext);
 
     useEffect(() => {
         switch (size) {
             case 'very-tiny':
-                setTitleSize(12)
+                setTitleSize(10)
                 break
             case 'tiny':
-                setTitleSize(14)
+                setTitleSize(12)
                 break
             case 'small':
-                setTitleSize(16)
+                setTitleSize(14)
                 break
             case 'medium':
-                setTitleSize(18)
+                setTitleSize(16)
                 break
             case 'large':
-                setTitleSize(22)
+                setTitleSize(20)
                 break
             default:
                 setTitleSize(24)
@@ -82,15 +83,20 @@ export const Title = ({
         }
     }, [weight])
 
-    const textStyle: StyleProp<TextStyle> = {
-        fontSize: titelSize,
-        fontFamily: titleFontWeight,
-        color: theme.colors.onSurfaceVariant,
-        textAlign: align,
-        marginVertical: marginVertical,
-        marginHorizontal: marginHorizontal,
-        textTransform: uppercase ? 'uppercase' : 'none'
-    }
+    const textStyle: StyleProp<TextStyle> = [
+        {
+            fontSize: titelSize,
+            fontFamily: titleFontWeight,
+            color: color ? color : theme.colors.onSurfaceVariant,
+            textAlign: align,
+            marginVertical: marginVertical,
+            marginHorizontal: marginHorizontal,
+            textTransform: uppercase ? 'uppercase' : 'none'
+        },
+        themeInfo.isDarkTheme && {
+            color: color ? lightenColor(color, 0.8) : theme.colors.onSurfaceVariant
+        }
+    ]
 
     return (
         <>

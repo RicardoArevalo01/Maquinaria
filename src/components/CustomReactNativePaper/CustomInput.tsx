@@ -2,6 +2,7 @@ import React, {memo, useContext, useEffect, useState} from 'react';
 import {
   KeyboardTypeOptions,
   StyleProp,
+  StyleSheet,
   TextStyle,
   View,
   ViewStyle,
@@ -93,7 +94,7 @@ export const CustomInput = memo(
             ...(style as any),
           }}
           mode="outlined"
-          theme={{roundness: 25}}
+          theme={{roundness: 12 }}
           textColor={theme.colors.onTertiaryContainer}
           label={placeholder}
           value={value}
@@ -138,3 +139,12 @@ export const CustomInput = memo(
     );
   },
 );
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

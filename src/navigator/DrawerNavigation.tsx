@@ -6,7 +6,12 @@ import {TabNavigation} from './TabNavigation';
 
 const Drawer = createDrawerNavigator();
 
-const drawerItems = [{name: 'TabNavigation', component: TabNavigation}];
+const drawerItems = [
+  {
+    name: 'TabNavigation', 
+    component: TabNavigation
+  }
+];
 
 export const DrawerNavigation = () => {
   return (

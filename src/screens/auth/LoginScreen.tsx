@@ -2,9 +2,10 @@ import React, {useContext} from 'react';
 import {View, Keyboard, Image} from 'react-native';
 import {CommonActions, useNavigation} from '@react-navigation/native';
 import {BaseScreen} from '../../Template';
-import {CustomButton, CustomInput} from '../../components';
+import { CustomInput} from '../../components';
 import {AuthContext, ThemeContext} from '../../context';
 import {useForm} from '../../hooks';
+import { Button } from '../../components/shared';
 
 let user = '';
 let pass = '';
@@ -19,9 +20,10 @@ export const LoginScreen = () => {
   const {theme, themeInfo} = useContext(ThemeContext);
   const navigation = useNavigation();
 
-  const {userName, password, onChange} = useForm({
+  const {password, onChange, userName, pepito} = useForm({
     userName: user,
     password: pass,
+    pepito: 'pepito',
   });
 
   const Login = async () => {
@@ -31,7 +33,7 @@ export const LoginScreen = () => {
   };
 
   return (
-    <BaseScreen style={{justifyContent: 'center'}}>
+    <BaseScreen style={{alignItems: 'center', padding: 40}}>
       <Image
         source={require('../../assets/logo.png')}
         style={{
@@ -43,7 +45,7 @@ export const LoginScreen = () => {
       />
       <CustomInput
         placeholder={'Usuario'}
-        defaultValue={userName}
+        defaultValue={pepito}
         keyboardType={'email-address'}
         errorCondition={userName.length < 3}
         errorMessage="Debe ingresar un usuario válido"
@@ -57,20 +59,19 @@ export const LoginScreen = () => {
         errorMessage="Debe ingresar su contraseña"
         getValue={value => onChange(value, 'password')}
       />
-      <CustomButton
+      <Button
         //fontWeight="bold"
         disabled={userName.length < 3 || password.length < 8}
         onPress={Login}
-        textColor={themeInfo.isDarkTheme ? 'white' : ''}
         style={{width: '60%', marginTop: '4%'}}
-        title={'INICIAR SESIÓN'}
+        text={'Iniciar Sesión'}
       />
       <View
         style={{
           alignSelf: 'flex-end',
           alignItems: 'flex-end',
         }}>
-        <CustomButton
+        {/* <Button
           type="text"
           //fontWeight="normal"
           title={'Olvidé Contraseña'}
@@ -80,15 +81,7 @@ export const LoginScreen = () => {
               CommonActions.navigate('RecoveryPasswordScreen'),
             )
           }
-        />
-        <CustomButton
-          type="text"
-          title={'¿No tienes cuenta? ¡Registrate!'}
-          style={{marginVertical: 0.5}}
-          onPress={() =>
-            navigation.dispatch(CommonActions.navigate('RegisterScreen'))
-          }
-        />
+        /> */}
       </View>
     </BaseScreen>
   );
