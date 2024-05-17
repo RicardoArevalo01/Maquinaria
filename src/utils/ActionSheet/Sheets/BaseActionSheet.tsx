@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {
   KeyboardAvoidingView,
   StyleProp,
@@ -7,7 +7,7 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
-import {ThemeContext} from '../../../context';
+import {useThemeStore} from '../../../shared';
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -23,7 +23,9 @@ export const BaseActionSheet = ({
   id,
 }: Props) => {
   const {height} = useWindowDimensions();
-  const {theme} = useContext(ThemeContext);
+  const {
+    theme: {theme},
+  } = useThemeStore();
   return (
     <ActionSheet
       id={id}

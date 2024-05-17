@@ -6,4 +6,6 @@ export * from './ButtonRow';
 export * from './Card';
 export * from './FloatButton';
 export * from './TextContent';
-export * from './ItemRow';
+export * from './ItemGroup';
+export * from './ProfilePic';
+export * from './MaterialIcon';

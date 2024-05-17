@@ -1,7 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+type KeyStorageType = 'token' | 'theme';
+
 export const useBaseStorage = <T extends unknown>() => {
-  const SaveData = async (data: T | T[], key: string): Promise<boolean> => {
+  const SaveData = async (
+    data: T | T[],
+    key: KeyStorageType,
+  ): Promise<boolean> => {
     try {
       const jsonValue = JSON.stringify(data);
       await AsyncStorage.setItem(key, jsonValue);
@@ -11,7 +16,9 @@ export const useBaseStorage = <T extends unknown>() => {
     }
   };
 
-  const GetData = async <T extends unknown>(key: string): Promise<T> => {
+  const GetData = async <T extends unknown>(
+    key: KeyStorageType,
+  ): Promise<T> => {
     const value = await AsyncStorage.getItem(key);
     const objToken: T = {} as T;
     if (value != null) {
@@ -30,7 +37,7 @@ export const useBaseStorage = <T extends unknown>() => {
     }
   };
 
-  const CheckData = async (key: string): Promise<boolean> => {
+  const CheckData = async (key: KeyStorageType): Promise<boolean> => {
     try {
       const value = await AsyncStorage.getItem(key);
       return value != null;
@@ -41,7 +48,7 @@ export const useBaseStorage = <T extends unknown>() => {
 
   const DeleteData = async (
     id: string,
-    key: string,
+    key: KeyStorageType,
     itemId: (item: T) => string,
   ): Promise<boolean> => {
     const value = await AsyncStorage.getItem(key);
@@ -54,7 +61,7 @@ export const useBaseStorage = <T extends unknown>() => {
     return true;
   };
 
-  const RemoveData = async (keysArray: string[]) => {
+  const RemoveData = async (keysArray: KeyStorageType[]) => {
     // Usamos Promise.all para manejar múltiples llamadas asincrónicas a AsyncStorage.removeItem
     await Promise.all(keysArray.map(key => AsyncStorage.removeItem(key)));
   };

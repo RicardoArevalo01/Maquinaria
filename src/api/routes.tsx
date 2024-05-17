@@ -10,6 +10,7 @@ export const ApiEndpoints = {
   BaseApi: '/api',
   Security: {
     this: '/Security',
+    login: '/Security/login',
     register: '/Security/register',
     changePassword: '/Security/changePassword',
     forgetPassword: '/Security/forgetPassword',

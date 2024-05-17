@@ -1,21 +1,3 @@
-export type GestureCoord = {x: number; y: number};
-
-export interface ThemeInfo {
-  isDarkTheme: boolean;
-  colorTheme: colorThemeType;
-}
-
-export type colorThemeType =
-  | 'default'
-  | 'blue'
-  | 'pink'
-  | 'green'
-  | 'orange'
-  | 'red'
-  | 'yellow'
-  | 'cyan';
-
-export interface BaseInfo {
-  name: string;
-  description: string;
+export interface children {
+  children: JSX.Element | JSX.Element[];
 }

@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "src/assets/Fonts/Montserrat-Black.ttf",
+      "sha1": "ad9c434705a52d90ac5a770e591c2325fb48c2dc"
+    },
+    {
       "path": "src/assets/Fonts/Montserrat-Bold.ttf",
       "sha1": "98c66622226025f539568865af96df5175e2979c"
     },

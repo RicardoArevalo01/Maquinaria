@@ -1,12 +1,14 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Text} from 'react-native-paper';
-import {ThemeContext} from '../../../../../context';
+import {useThemeStore} from '../../../../../shared';
 interface Props {
   title: string;
   onPress: () => void;
 }
 export const SelectorItemButton = ({title, onPress}: Props) => {
-  const {theme} = useContext(ThemeContext);
+  const {
+    theme: {theme, themeInfo},
+  } = useThemeStore();
   return (
     <Text
       onPress={onPress}

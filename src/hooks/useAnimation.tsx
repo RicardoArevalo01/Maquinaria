@@ -1,6 +1,5 @@
 import {useRef} from 'react';
-import {Animated, Easing, EasingStatic} from 'react-native';
-import { EasingFunction } from 'react-native-reanimated';
+import {Animated} from 'react-native';
 
 export const useAnimation = () => {
   const opacity = useRef(new Animated.Value(0)).current;
@@ -26,29 +25,23 @@ export const useAnimation = () => {
   const startMovingPosition = (
     initPosition: number,
     duration: number = 1000,
-    easing: EasingFunction = Easing.linear,
   ) => {
     position.setValue(initPosition);
     Animated.timing(position, {
       toValue: 0,
       duration,
       useNativeDriver: true,
-      easing: easing,
+      //easing: Easing.bounce,
     }).start();
   };
 
-  const zoomAndFadeOut = (
-    maxScale: number, 
-    zoomDuration: number = 500,
-    easing: EasingFunction = Easing.linear,
-  ) => {
+  const zoomAndFadeOut = (maxScale: number, zoomDuration: number = 500) => {
     scale.setValue(1);
     fadeOut();
     Animated.timing(scale, {
       toValue: maxScale,
       duration: zoomDuration,
       useNativeDriver: true,
-      easing: easing,
     }).start();
   };
 

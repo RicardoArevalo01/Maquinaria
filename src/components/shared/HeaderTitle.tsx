@@ -1,7 +1,6 @@
 import { StyleProp, Text, TextStyle } from "react-native"
-import { fonts } from "../../theme/appFonts"
 import { useContext } from "react"
-import { ThemeContext } from "../../context"
+import { useThemeStore } from "../../shared"
 
 export interface HeaderTitleProps {   
     text?: string,
@@ -15,7 +14,9 @@ export const HeaderTitle = ( {
     style ,
 }: HeaderTitleProps ) => {
 
-    const {theme} = useContext(ThemeContext);
+    const {
+        theme: { theme, themeInfo }
+    } = useThemeStore();
     
     return (
 
@@ -24,7 +25,7 @@ export const HeaderTitle = ( {
                 {
                     fontSize: 25,
                     textAlign: align,
-                    fontFamily: fonts.bold,
+                    fontWeight: 'bold',
                     color: theme.colors.onSurfaceVariant,
                     marginTop: 5,
                 },

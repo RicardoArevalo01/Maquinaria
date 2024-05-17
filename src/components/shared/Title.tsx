@@ -1,18 +1,18 @@
 import { Pressable, StyleProp, Text, TextStyle } from "react-native"
 import { useContext, useEffect, useState } from "react"
-import { fonts } from "../../theme/appFonts"
-import { ThemeContext } from "../../context"
 import { lightenColor } from "../../helpers"
+import { useThemeStore } from "../../shared"
+import { fonts } from "../../theme"
 
 export interface TitleProps {
     text?: string
-    size?: 'very-tiny' | 'tiny' | 'small' | 'medium' | 'large'
+    size?: 'ant-man' | 'very-tiny' | 'tiny' | 'small' | 'medium' | 'large'
     style?: StyleProp<TextStyle>
     color?: string
     align?: 'center' | 'left' | 'right'
     marginVertical?: number
     marginHorizontal?: number
-    weight?: 'light' | 'regular' | 'medium' | 'semiBold' | 'bold'
+    weight?: 'light' | 'regular' | 'medium' | 'semibold' | 'bold' | 'extra-bold' | 'black'
     uppercase?: boolean
 
     onPress?: () => void
@@ -24,7 +24,7 @@ export const Title = ({
     color ,
     align = 'left',
     style,
-    weight = 'semiBold',
+    weight = 'semibold',
     marginVertical = 0,
     marginHorizontal = 0,
     uppercase = false,
@@ -33,12 +33,17 @@ export const Title = ({
 }: TitleProps
 ) => {
 
-    const [titelSize, setTitleSize] = useState(0)
-    const [titleFontWeight, setTitleFontWeight] = useState('')
-    const {theme, themeInfo} = useContext(ThemeContext);
+    const [titelSize, setTitleSize] = useState<number>(0)
+    const [titleWeight, setTitleWeight] = useState<string>('')
+    const {
+        theme: { theme, themeInfo }
+     } = useThemeStore();
 
     useEffect(() => {
         switch (size) {
+            case 'ant-man':
+                setTitleSize(9)
+                break
             case 'very-tiny':
                 setTitleSize(10)
                 break
@@ -63,22 +68,28 @@ export const Title = ({
     useEffect(() => {
         switch (weight) {
             case 'light':
-                setTitleFontWeight(fonts.light)
+                setTitleWeight(fonts.light)
                 break
             case 'regular':
-                setTitleFontWeight(fonts.regular)
+                setTitleWeight(fonts.regular)
                 break
             case 'medium':
-                setTitleFontWeight(fonts.medium)
+                setTitleWeight(fonts.medium)
                 break
-            case 'semiBold':
-                setTitleFontWeight(fonts.semiBold)
+            case 'semibold':
+                setTitleWeight(fonts.semiBold)
                 break
             case 'bold':
-                setTitleFontWeight(fonts.bold)
+                setTitleWeight(fonts.bold)
+                break
+            case 'extra-bold':
+                setTitleWeight(fonts.extraBold)
+                break
+            case 'black':
+                setTitleWeight(fonts.black)
                 break
             default:
-                setTitleFontWeight(fonts.semiBold)
+                setTitleWeight(fonts.semiBold)
                 break
         }
     }, [weight])
@@ -86,7 +97,7 @@ export const Title = ({
     const textStyle: StyleProp<TextStyle> = [
         {
             fontSize: titelSize,
-            fontFamily: titleFontWeight,
+            fontFamily: titleWeight,
             color: color ? color : theme.colors.onSurfaceVariant,
             textAlign: align,
             marginVertical: marginVertical,
@@ -94,7 +105,7 @@ export const Title = ({
             textTransform: uppercase ? 'uppercase' : 'none'
         },
         themeInfo.isDarkTheme && {
-            color: color ? lightenColor(color, 0.8) : theme.colors.onSurfaceVariant
+            color: color ? color : theme.colors.onSurfaceVariant
         }
     ]
 

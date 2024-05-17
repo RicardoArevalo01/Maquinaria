@@ -2,7 +2,7 @@ import React from 'react';
 import {DialogBase, BaseDialogProps} from '../DialogComponents/DialogBase';
 import {Dialog} from 'react-native-paper';
 import {DialogButton} from '../DialogComponents/DialogButton';
-import {CustomInput} from '../../../components/CustomReactNativePaper/CustomInput';
+import {CustomInput} from '../../../components/base/CustomInput';
 
 interface Props extends BaseDialogProps {
   onPress?: () => void;

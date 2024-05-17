@@ -1,9 +1,9 @@
 import { Pressable, StyleProp, Text, View, ViewStyle } from "react-native"
 import Icon from "react-native-vector-icons/MaterialIcons"
 import { useContext, useEffect, useState } from "react"
-import { ThemeContext } from "../../context"
 import { lightenColor, darkenColor } from "../../helpers"
-import { fonts } from "../../theme/appFonts"
+import { useThemeStore } from "../../shared"
+import { fonts } from "../../theme"
 
 export interface ButtonProps {
     text?: string
@@ -41,7 +41,9 @@ export const Button = ( {
     onPress
 }: ButtonProps ) => {
     
-    const {theme, themeInfo} = useContext(ThemeContext);
+    const { 
+        theme: {theme, themeInfo},
+    } = useThemeStore();
     
     const [buttonSize, setButtonSize] = useState<number>(0)
     const [buttonPress, setButtonPress] = useState<boolean>(false)

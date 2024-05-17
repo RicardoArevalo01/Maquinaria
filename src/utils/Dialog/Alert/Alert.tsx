@@ -1,20 +1,14 @@
-import React, {
-  useState,
-  useRef,
-  forwardRef,
-  useImperativeHandle,
-  useContext,
-} from 'react';
+import React, {useState, useRef, forwardRef, useImperativeHandle} from 'react';
 import {AxiosError} from 'axios';
-import {ApiErrorResponse} from '../../../interfaces/BaseApiInterface';
-import {CheckInternetContext} from '../../../context/CheckInternetContext';
+import {ApiErrorResponse} from '../../../interfaces/ApiResponseInterface';
 
-import {icons} from '../../../theme/appTheme';
 import {AlertDefaut} from './AlertDefaut';
 import {AlertImage} from './AlertImage';
 import {AlertMultiOptions} from './AlertMultioptions';
 import {AlertPromt} from './AlertPromt';
 import {AlertYesNo} from './AlertYesNo';
+import {useConnectionStore} from '../../../shared';
+import { icons } from '../../../theme';
 
 type AlertType = 'default' | 'yesno' | 'promt' | 'image' | 'multioptions';
 interface Options {
@@ -42,7 +36,9 @@ type AlertProps = {
 };
 
 const AlertComponent = forwardRef<AlertProps>((_props, ref) => {
-  const {hasConnection} = useContext(CheckInternetContext);
+  const {
+    connection: {isConnected},
+  } = useConnectionStore();
   const [visible, setVisible] = useState(false);
   const [alertData, setAlertData] = useState<AlertData>({
     type: 'default',
@@ -71,7 +67,7 @@ const AlertComponent = forwardRef<AlertProps>((_props, ref) => {
     console.log('status: ', error.response?.status);
     show('default', {
       title: 'Error',
-      message: !hasConnection
+      message: !isConnected
         ? 'Verifique su conexión a Internet'
         : error.response?.status! >= 400 && error.response?.status! < 500
           ? typeof error.response?.data === 'string' &&

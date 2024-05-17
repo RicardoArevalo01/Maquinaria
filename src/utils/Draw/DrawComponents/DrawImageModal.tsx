@@ -7,11 +7,14 @@ import {
   Path,
   SkImage,
 } from '@shopify/react-native-skia';
-import {BaseModalProps, BaseModal} from '../../../Template/BaseModal';
+import {
+  BaseModalProps,
+  BaseModal,
+} from '../../../theme/Template/screens/BaseModal';
 import {useDraw} from '../DrawHooks/useDraw';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {IconButton} from 'react-native-paper';
-import {icons} from '../../../theme/appTheme';
+import {icons} from '../../../theme';
 
 interface Props extends BaseModalProps {
   image: SkImage | null;

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { StyleProp, Text, TextStyle } from "react-native";
-import { ThemeContext } from "../../context";
-import { fonts } from "../../theme/appFonts";
+import { useThemeStore } from "../../shared";
+import { fonts } from "../../theme";
 
 export interface TextContentProps {
     content?: string;
@@ -10,7 +10,7 @@ export interface TextContentProps {
     align?: 'center' | 'left' | 'right';
     marginVertical?: number;
     marginHorizontal?: number;
-    weight?: string;
+    fontFamily?: string;
     uppercase?: boolean;
 }
 
@@ -19,13 +19,15 @@ export const TextContent = ( {
     color,
     align = 'left',
     style,
-    weight = fonts.regular,
+    fontFamily,
     marginVertical = 0,
     marginHorizontal = 0,
     uppercase = false
 }: TextContentProps ) => {
 
-    const {theme} = useContext(ThemeContext);
+    const {
+        theme: { theme, themeInfo }
+    } = useThemeStore();
   
 
     return (
@@ -36,7 +38,7 @@ export const TextContent = ( {
                 textAlign: align,
                 marginVertical: marginVertical,
                 marginHorizontal: marginHorizontal,
-                fontFamily: weight
+                fontFamily: fontFamily ? fontFamily : fonts.regular,
             },
         ]}>
             {content}

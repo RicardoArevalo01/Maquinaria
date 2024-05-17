@@ -2,8 +2,8 @@ import { Pressable, Text } from "react-native"
 import Icon from "react-native-vector-icons/MaterialIcons"
 import { useContext, useState } from "react"
 import { darkenColor } from "../../helpers"
-import { ThemeContext } from "../../context"
-import { fonts } from "../../theme/appFonts"
+import { useThemeStore } from "../../shared"
+import { fonts } from "../../theme"
 
 export interface FloatButtonProps {
     icon?: React.ReactNode
@@ -30,9 +30,7 @@ export const FloatButton = ( {
 }: FloatButtonProps ) => {
 
     const [buttonPress, setButtonPress] = useState(false)
-
-    const {theme, themeInfo} = useContext(ThemeContext);
-
+    const {  theme:{theme, themeInfo} } = useThemeStore();
 
     return (
 
@@ -78,8 +76,8 @@ export const FloatButton = ( {
                 style={[
                     {
                         color: theme.colors.onPrimary,
-                        fontFamily: fonts.semiBold,
                         fontSize: 14,
+                        fontFamily: fonts.semiBold,
                         marginLeft: 5
                     },
                     themeInfo.isDarkTheme && { 

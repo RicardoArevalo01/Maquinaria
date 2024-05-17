@@ -1,1 +1,1 @@
-export * from './CustomReactNativePaper';
+export * from './base';
